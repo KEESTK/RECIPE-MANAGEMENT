@@ -1,0 +1,20 @@
+RecipeManagement/
+├── Domain/
+│   ├── Entities/
+│   ├── ValueObjects/
+│   └── Services/
+├── Application/
+│   ├── Interfaces/
+│   ├── DTOs/
+│   └── Services/
+├── Infrastructure/
+│   ├── Persistence/
+│   │   ├── RecipeDbContext.cs
+│   │   ├── EntityConfigurations/
+│   │   └── Repositories/
+│   └── Migrations/
+└── DemoApp/ (separate project)
+
+The library (RecipeManagement) contains all domain and data access logic.
+The demo project references it and performs actions (e.g., register user, create recipe).
+EF Core (see InfrastructurePackage.txt for dependencies) is isolated under Infrastructure/Persistence → keeps domain pure.

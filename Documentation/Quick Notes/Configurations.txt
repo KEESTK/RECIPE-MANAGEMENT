@@ -1,0 +1,2 @@
+Each configuration implements IEntityTypeConfiguration<T> to cleanly separate mapping logic from the DbContext.
+Example see RecipeConfiguration.cs in Persistence/EntityConfiguration

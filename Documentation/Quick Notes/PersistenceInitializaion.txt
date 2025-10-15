@@ -1,0 +1,12 @@
+I plan to initialise EF Core as follows in Demo App based on Infrastructure/Persistence/RecipeDbContext):
+    var options = new DbContextOptionsBuilder<RecipeDbContext>()
+        .UseSqlite("Data Source=recipes.db")
+        .Options;
+
+    using var context = new RecipeDbContext(options);
+    context.Database.EnsureCreated();
+    
+    // Example: Add user
+    var user = new User("demoUser", "hashed_password");
+    context.Users.Add(user);
+    context.SaveChanges();
