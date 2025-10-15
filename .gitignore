@@ -1,0 +1,96 @@
+# This file is based on the standard Visual Studio and Angular .gitignore templates,
+# combining and adapting them for a unified .NET and Angular project structure.
+
+###################################
+# Visual Studio / .NET Core / C# #
+###################################
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+*.pdb
+*.suo
+*.user
+*.ncb
+*.aps
+*.bsc
+*.sbr
+*.res
+*.exe.config
+*.cache
+*.com
+*.dll
+*.ini
+*.log
+*.lst
+*.mdf
+*.ldf
+*.obj
+*.psd1
+*.resources
+*.rsp
+*.bak
+*.vssscc
+*.vsscc
+_ReSharper.*/
+*.[Cc]odeAnalysis/
+$tf/
+*.db
+
+# NuGet/npm/Bower packages
+packages/
+*.nupkg
+*.snupkg
+[Bb]ower_[Cc]omponents/
+[Nn]ode_[Mm]odules/
+npm-debug.log*
+
+# Test Results
+TestResults/
+*.trx
+*.xml.testrun
+*.coverage
+*.vsix
+
+# VS Code specific files
+.vscode/
+
+# Rider specific files
+.idea/
+
+# Windows/OS files
+Thumbs.db
+Desktop.ini
+
+#################################
+# Angular / Frontend Specific   #
+#################################
+
+# Dependency directory
+/node_modules
+
+# Distribution/build folder (usually 'dist' or 'wwwroot' in .NET)
+/dist
+/wwwroot/dist # Common for ASP.NET Core hosting Angular build
+
+# Compilation artifacts
+*.js.map
+*.css.map
+
+# Debug and Cache files
+npm-debug.log*
+yarn-error.log
+yarn-debug.log
+
+# IDE files (if not covered above)
+.angular/cache
+
+# VS Code settings (if you want these in .gitignore as well)
+# .vscode/
+
+# Environment files
+# Keep `environment.ts` but ignore local overrides or secrets
+# For example, if you have a local dev file that shouldn't be committed:
+/src/environments/environment.local.ts
