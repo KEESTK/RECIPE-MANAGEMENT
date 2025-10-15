@@ -1,0 +1,56 @@
+Run from Root:
+
+cd TestHarness && dotnet clean && dotnet build && dotnet run --project TestHarness && cd ..
+
+Or Run from TestHarness:
+dotnet run
+
+Last Run Results: 15.10.2025
+=== RecipeManagement TestHarness (enhanced report mode) ===
+Seeded recipe 'Pasta' (643b0e91-6a50-4e71-b5e2-1e56ae95a74b) by demoUser.
+✅ Register duplicate username should fail
+✅ Recipe must have at least 1 step
+✅ Recipe must have at least 1 ingredient
+✅ Recipe must have at least 1 category
+✅ Duplicate recipe name fails (global unique)
+✅ Duplicate ingredient name fails (DB unique index)
+✅ Duplicate category name fails (DB unique index)
+✅ Adding non-existent IngredientId should fail (FK)
+✅ Duplicate step order within a recipe fails (unique index)
+✅ User cannot favorite their own recipe
+❌ Create other's recipe — unexpected: DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+   Inner: SqliteException: SQLite Error 19: 'FOREIGN KEY constraint failed'.
+❌ Favorite someone else's recipe (first time) — unexpected: InvalidOperationException: Sequence contains no elements
+❌ Favorite is idempotent (second time no-op) — unexpected: InvalidOperationException: Sequence contains no elements
+❌ Verify favorites list contains one entry — unexpected: InvalidOperationException: Sequence contains no elements.
+✅ Query by Ingredient returns expected recipe
+✅ Query by Category returns expected recipe
+❌ Cascade delete should remove related steps & joins — unexpected: DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+   Inner: SqliteException: SQLite Error 19: 'FOREIGN KEY constraint failed'.
+
+=== SUMMARY ===
+✅ Register duplicate username should fail
+✅ Recipe must have at least 1 step
+✅ Recipe must have at least 1 ingredient
+✅ Recipe must have at least 1 category
+✅ Duplicate recipe name fails (global unique)
+✅ Duplicate ingredient name fails (DB unique index)
+✅ Duplicate category name fails (DB unique index)
+✅ Adding non-existent IngredientId should fail (FK)
+✅ Duplicate step order within a recipe fails (unique index)
+✅ User cannot favorite their own recipe
+❌ Create other's recipe → DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+❌ Favorite someone else's recipe (first time) → InvalidOperationException: Sequence contains no elements
+❌ Favorite is idempotent (second time no-op) → InvalidOperationException: Sequence contains no elements
+❌ Verify favorites list contains one entry → InvalidOperationException: Sequence contains no elements.
+✅ Query by Ingredient returns expected recipe
+✅ Query by Category returns expected recipe
+❌ Cascade delete should remove related steps & joins → DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+
+Total: 17 tests executed.
+✅ Passed: 12
+❌ Failed: 5
+⚪ Skipped: 0
+=== TestHarness finished ===
+
+

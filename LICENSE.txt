@@ -1,0 +1,36 @@
+
+=====================================================================
+EVALUATION LICENSE AGREEMENT
+=====================================================================
+
+Copyright © 2025 Kees Toukam — All Rights Reserved
+Email: kees.toukam@gmail.com
+
+This License Agreement governs the use of the accompanying software and source code (“Software”).
+
+1. GRANT OF LICENSE
+   - The author grants the Evaluating Party a non-exclusive, non-transferable, revocable license to:
+       a. View, execute, and analyze the Software solely for the purpose of recruitment evaluation (Bewerberaufgabe).
+   - No other rights are granted.
+
+2. RESTRICTIONS
+   - The Evaluating Party may not:
+       a. Modify, copy, distribute, sublicense, or use the Software for any commercial or internal development purpose.
+       b. Publish or share the Software, in whole or in part, outside of the evaluation process.
+
+3. OWNERSHIP
+   - All intellectual property rights remain with the author, Kees Toukam.
+   - This license does not transfer ownership or any derivative rights.
+
+4. TERMINATION
+   - This license automatically terminates after the evaluation process or upon notice from the author.
+   - Upon termination, all copies must be deleted or destroyed.
+
+5. WARRANTY DISCLAIMER
+   - The Software is provided "AS IS" without any warranty, express or implied.
+   - The author shall not be liable for any damages arising from its use.
+
+=====================================================================
+This license applies exclusively to the submission for the Bewerberaufgabe.
+Any other use is strictly prohibited.
+=====================================================================
