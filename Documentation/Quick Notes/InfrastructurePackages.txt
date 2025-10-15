@@ -1,4 +1,4 @@
-NuGet dependencies:
+NuGet dependencies for RecipeManagement.csproj:
 dotnet add package Microsoft.EntityFrameworkCore
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 dotnet add package Microsoft.EntityFrameworkCore.Design

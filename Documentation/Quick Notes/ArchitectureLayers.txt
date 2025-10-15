@@ -1,19 +1,34 @@
+RECIPE-MANAGEMENT/
+├── RecipeManagement/
+└── ApplicationRM/
+    ├── Backend/
+    └── Frontend/
 RecipeManagement/
 ├── Domain/
 │   ├── Entities/
-│   ├── ValueObjects/
-│   └── Services/
+│   ├── Services/
+│   └── ValueObjects/
+│       └── (optional future files like EmailAddress.cs, Measurement.cs)
+│
 ├── Application/
 │   ├── Interfaces/
 │   ├── DTOs/
+│   │   └── (optional DTOs like RecipeSummaryDto.cs)
 │   └── Services/
+│       └── (optional application orchestration services — currently unused)
+│
 ├── Infrastructure/
 │   ├── Persistence/
 │   │   ├── RecipeDbContext.cs
 │   │   ├── EntityConfigurations/
 │   │   └── Repositories/
 │   └── Migrations/
-└── DemoApp/ (separate project)
+│       └── (EF Core migrations will be auto-generated here)
+│
+├── RecipeManagement.csproj
+└── RecipeManagement.sln
+
+
 
 The library (RecipeManagement) contains all domain and data access logic.
 The demo project references it and performs actions (e.g., register user, create recipe).

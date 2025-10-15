@@ -9,5 +9,4 @@ User created: demoUser (1db39a00-e9da-4256-9c8a-fc3bbed794d2)
 Ingredient created: Noodles (8aab5554-75a9-43b7-8c88-41a68ba9a253)
 Category created: Dinner (8ab3c2a8-99d9-4fc0-af57-b92f98696582)
 Recipe created successfully!
-(base) wl-r7-176:RecipeManagement kees$ 
 

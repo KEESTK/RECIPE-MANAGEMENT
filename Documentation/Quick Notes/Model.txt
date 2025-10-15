@@ -1,0 +1,110 @@
+1: Core Entities
+| Entity                    | Description                                      | Key Relations                                                                                      |
+| ------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| User                      | Registered person managing recipes and favorites | Has many Recipes, has many Favorites                                                               |
+| Recipe                    | Represents a complete recipe                     | Has one Author (User), many Steps, many Ingredients (via junction), many Categories (via junction) |
+| Ingredient                | Global list entry (shared by all users)          | Appears in many Recipes                                                                            |
+| Category                  | Classification for recipes                       | Appears in many Recipes                                                                            |
+| Step                      | Individual preparation step                      | Belongs to one Recipe                                                                              |
+| Favorite (optional).      | User’s favorite recipe                           | Many-to-many between User and Recipe                                                               |
+
+
+2: Logical Model
+User ───< Recipe >───< RecipeCategory >─── Category
+  │             │
+  │             └──< RecipeIngredient >─── Ingredient
+  │
+  └──< Favorite >───> Recipe
+       
+Recipe ───< Step
+
+One User → can own many Recipes.
+
+One Recipe → belongs to exactly one User (Author).
+
+One Recipe → can have many Steps, each ordered (e.g., StepNumber).
+
+One Recipe → can have many Ingredients, and each Ingredient can belong to many Recipes → M:N relation (RecipeIngredient).
+
+One Recipe → can have many Categories, and each Category can belong to many Recipes → M:N relation (RecipeCategory).
+
+Favorites → M:N between User and Recipe, but excluding self-authored recipes (optional validation rule).
+
+
+3: Entitiy details
+___User___
+| Property       | Type             | Notes                              |
+| -------------- | ---------------- | ---------------------------------- |
+| `Id`           | `Guid`           | Primary key                        |
+| `Username`     | `string`         | Unique                             |
+| `Email`        | `string`         | Optional                           |
+| `PasswordHash` | `string`         | Simplified auth (no full Identity) |
+| `Recipes`      | `List<Recipe>`   | Authored recipes                   |
+| `Favorites`    | `List<Favorite>` | Optional favorite recipes          |
+
+___Recipe___
+| Property            | Type                     | Notes           |
+| ------------------- | ------------------------ | --------------- |
+| `Id`                | `Guid`                   | PK              |
+| `Name`              | `string`                 | Globally unique |
+| `Description`       | `string?`                | Optional        |
+| `AuthorId`          | `Guid`                   | FK to User      |
+| `Author`            | `User`                   | Navigation      |
+| `Steps`             | `List<Step>`             | Must have ≥1    |
+| `RecipeIngredients` | `List<RecipeIngredient>` | Must have ≥1    |
+| `RecipeCategories`  | `List<RecipeCategory>`   | Must have ≥1    |
+
+___Ingredient___
+| Property            | Type                     | Notes           |
+| ------------------- | ------------------------ | --------------- |
+| `Id`                | `Guid`                   | PK              |
+| `Name`              | `string`                 | Unique globally |
+| `RecipeIngredients` | `List<RecipeIngredient>` | M:N link        |
+
+___Category___
+| Property           | Type                   | Notes           |
+| ------------------ | ---------------------- | --------------- |
+| `Id`               | `Guid`                 | PK              |
+| `Name`             | `string`               | Unique globally |
+| `RecipeCategories` | `List<RecipeCategory>` | M:N link        |
+
+___Step___
+| Property      | Type     | Notes         |
+| ------------- | -------- | ------------- |
+| `Id`          | `Guid`   | PK            |
+| `RecipeId`    | `Guid`   | FK to Recipe  |
+| `Order`       | `int`    | Step sequence |
+| `Description` | `string` | Step details  |
+
+___Favorite___
+| Property   | Type   | Notes        |
+| ---------- | ------ | ------------ |
+| `UserId`   | `Guid` | FK to User   |
+| `RecipeId` | `Guid` | FK to Recipe |
+
+
+___Junction Entities___
+***___RecipeIngredient___***
+| Property       | Type      | Notes                   |
+| -------------- | --------- | ----------------------- |
+| `RecipeId`     | `Guid`    | FK                      |
+| `IngredientId` | `Guid`    | FK                      |
+| `Amount`       | `string?` | Optional (e.g., “200g”) |
+
+***___RecipeCategory___***
+| Property     | Type   | Notes |
+| ------------ | ------ | ----- |
+| `RecipeId`   | `Guid` | FK    |
+| `CategoryId` | `Guid` | FK    |
+
+4: Validation Summary
+| Rule                                              | Description              |
+| ------------------------------------------------- | ------------------------ |
+| Unique `Recipe.Name`                              | Global uniqueness        |
+| Unique `Category.Name`                            | Global uniqueness        |
+| Unique `Ingredient.Name`                          | Global uniqueness        |
+| Recipe must have ≥1 Step                          | Validation before saving |
+| Recipe must have ≥1 Ingredient                    | Validation before saving |
+| Recipe must have ≥1 Category                      | Validation before saving |
+| Only registered User can manage recipes           | Access control rule      |
+| Optional: A user cannot favorite their own recipe | Nice-to-have             |

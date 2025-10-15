@@ -1,11 +1,2 @@
 To keep the domain clean and testable, I define repository interfaces in Application/Interfaces:
-    Example:
-    public interface IRecipeRepository
-    {
-        Task<Recipe?> GetByIdAsync(Guid id);
-        Task<IEnumerable<Recipe>> GetAllAsync();
-        Task AddAsync(Recipe recipe);
-        Task DeleteAsync(Guid id);
-        Task SaveChangesAsync();
-    }
-My Implementations live in Infrastructure/Persistence/Repositories
+    Example see IRecipeRepository.cs
